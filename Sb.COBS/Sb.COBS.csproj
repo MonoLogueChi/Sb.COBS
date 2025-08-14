@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0;net10.0</TargetFrameworks>
+	  <Nullable>enable</Nullable>
+	  <LangVersion>preview</LangVersion>
+	  <AssemblyName>Sb.COBS</AssemblyName>
+	  <PackageId>Sb.COBS</PackageId>
+	  <PackageProjectUrl>https://github.com/u2sb/Sb.COBS.git</PackageProjectUrl>
+	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	  <Title>Sb.COBS</Title>
+	  <Authors>MonoLogueChi</Authors>
+	  <Company>U2SB</Company>
+	  <RepositoryUrl>https://github.com/u2sb/Sb.COBS.git</RepositoryUrl>
+	  <RepositoryType>git</RepositoryType>
+	  <PackageIcon>avatar.png</PackageIcon>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	  <Copyright>U2SB</Copyright>
+	  <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sb.Extensions" Version="0.0.6" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\icons\avatar.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
