@@ -3,6 +3,9 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.HighPerformance;
+#if NET5_0_OR_GREATER
+using System.Runtime.InteropServices;
+#endif
 
 #pragma warning disable IDE0130
 namespace Sb;
@@ -87,6 +90,21 @@ public static class COBS
   /// <summary>
   ///   Encodes the given data using COBS.
   /// </summary>
+  /// <param name="data"></param>
+  /// <param name="addZeroByte"></param>
+  /// <returns></returns>
+  public static byte[] Encode(List<byte> data, bool addZeroByte = true)
+  {
+#if NET5_0_OR_GREATER
+    return Encode(CollectionsMarshal.AsSpan(data), addZeroByte);
+#else
+    return Encode(data.ToArray(), addZeroByte);
+#endif
+  }
+
+  /// <summary>
+  ///   Encodes the given data using COBS.
+  /// </summary>
   /// <param name="data">The data to encode, as a List of bytes.</param>
   /// <param name="addZeroByte">If true, appends a zero byte at the end of the encoded data.</param>
   /// <returns>The COBS-encoded byte array.</returns>
@@ -166,6 +184,21 @@ public static class COBS
   public static byte[] Decode(byte[] data, bool withZeroByte = false)
   {
     return Decode(new ReadOnlySpan<byte>(data), withZeroByte);
+  }
+
+  /// <summary>
+  ///   Decodes the given COBS-encoded data.
+  /// </summary>
+  /// <param name="data">The COBS-encoded data to decode.</param>
+  /// <param name="withZeroByte">If true, removes the trailing zero byte from the decoded data.</param>
+  /// <returns>The decoded byte array.</returns>
+  public static byte[] Decode(List<byte> data, bool withZeroByte = true)
+  {
+#if NET5_0_OR_GREATER
+    return Encode(CollectionsMarshal.AsSpan(data), withZeroByte);
+#else
+    return Decode(data.ToArray(), withZeroByte);
+#endif
   }
 
   /// <summary>
